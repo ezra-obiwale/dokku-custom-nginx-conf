@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 [[ " help custom-nginx-conf:help " == *" $1 "* ]] || exit "$DOKKU_NOT_IMPLEMENTED_EXIT"
-source "$PLUGIN_AVAILABLE_PATH/dokku-custom-nginx-conf/help-functions"
+source "$PLUGIN_AVAILABLE_PATH/custom-nginx-conf/help-functions"
 set -eo pipefail
 [[ $DOKKU_TRACE ]] && set -x
 
