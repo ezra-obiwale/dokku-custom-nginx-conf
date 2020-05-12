@@ -5,10 +5,8 @@ set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 SOURCE_FILE="$SOURCECODE_WORK_DIR/nginx.conf"
 TARGET_FILE="$DOKKU_ROOT/$APP/nginx.conf.d/app.custom.conf"
 
-if [[ -f "$TARGET_FILE"; ]] then
-    rm "$TARGET_FILE" 2>/dev/null
-fi
+# Remove previously created custom file
+test -f "$TARGET_FILE"; && rm "$TARGET_FILE" 2>/dev/null
 
-if [[ -f "$SOURCE_FILE"; ]] then
-    cp "$SOURCE_FILE" "$TARGET_FILE" 2>/dev/null
-fi
+# Creates new custom file
+test -f "$SOURCE_FILE"; ]] && cp "$SOURCE_FILE" "$TARGET_FILE" 2>/dev/null
