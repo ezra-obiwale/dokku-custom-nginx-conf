@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+source "$PLUGIN_CORE_AVAILABLE_PATH/common/functions"
+
+local IMAGE_TAG="$(get_running_image_tag "$APP")"
+local IMAGE=$(get_deploying_app_image_name "$APP" "$IMAGE_TAG")
+copy_from_image "$IMAGE" "nginx.conf" "$DOKKU_ROOT/$APP/nginx.conf.d/app.custom.conf" 2>/dev/null
