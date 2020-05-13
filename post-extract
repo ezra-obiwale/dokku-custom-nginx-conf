@@ -9,8 +9,12 @@ TMP_WORK_DIR="$2"
 SOURCE_FILE="$TMP_WORK_DIR/nginx.conf"
 TARGET_FILE="$DOKKU_ROOT/$APP/nginx.conf.d/app.custom.conf"
 
+echo "-----> Deleting previous custom nginx conf"
+
 # Remove previously created custom file
-test -f "$TARGET_FILE" && rm "$TARGET_FILE" && echo "Deleted previous custom nginx conf" 2>/dev/null
+test -f "$TARGET_FILE" && rm "$TARGET_FILE" 2>/dev/null
+
+echo "-----> Copying new custom nginx conf"
 
 # Creates new custom file
-test -f "$SOURCE_FILE" && cp "$SOURCE_FILE" "$TARGET_FILE" && echo "Copied new custom nginx conf" 2>/dev/null
+test -f "$SOURCE_FILE" && cp "$SOURCE_FILE" "$TARGET_FILE" 2>/dev/null
