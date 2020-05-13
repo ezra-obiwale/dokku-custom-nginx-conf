@@ -5,9 +5,12 @@ source "$PLUGIN_CORE_AVAILABLE_PATH/common/functions"
 
 APP="$1"; verify_app_name "$APP"
 TMP_WORK_DIR="$2"
+TARGET_DIR="$DOKKU_ROOT/$APP/nginx.conf.d"
+
+mkdir $TARGET_DIR
 
 SOURCE_FILE="$TMP_WORK_DIR/nginx.conf"
-TARGET_FILE="$DOKKU_ROOT/$APP/nginx.conf.d/app.custom.conf"
+TARGET_FILE="$TARGET_DIR/app.custom.conf"
 
 echo "-----> Deleting previous custom nginx conf"
 
