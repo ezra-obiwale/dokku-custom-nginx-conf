@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+source "$PLUGIN_CORE_AVAILABLE_PATH/common/functions"
+
+APP="$1"; verify_app_name "$APP"
+TMP_WORK_DIR="$2"
+
+SOURCE_FILE="$TMP_WORK_DIR/nginx.conf"
+TARGET_FILE="$DOKKU_ROOT/$APP/nginx.conf.d/app.custom.conf"
+
+# Remove previously created custom file
+test -f "$TARGET_FILE" && rm "$TARGET_FILE" && echo "Deleted previous conf" 2>/dev/null
+
+# Creates new custom file
+test -f "$SOURCE_FILE" && cp "$SOURCE_FILE" "$TARGET_FILE" && echo "Copied new conf" 2>/dev/null
