@@ -3,7 +3,7 @@
 set -eo pipefail
 [[ $DOKKU_TRACE ]] && set -x
 
-cmd-plugin-help() {
+cmd-custom-nginx-conf-help() {
   declare desc="help command"
   declare CMD="$1"
   local plugin_name="custom-nginx-conf"

@@ -1,4 +1,4 @@
 [plugin]
 description = "dokku custom nginx conf plugin"
-version = "0.2.1"
+version = "0.2.2"
 [plugin.config]
