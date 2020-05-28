@@ -16,8 +16,8 @@ sudo dokku plugin:install https://github.com/ezra-obiwale/dokku-custom-nginx-con
 
 ## Usage
 
-1. Create an `nginx.conf` file in the root of your application.
+1. Create an `custom-nginx.conf` file in the root directory of your application.
 2. That's all.
 
-The `nginx.conf` file is copied to your apps`nginx.conf.d/` directory when you push
-to the server.
+The `custom-nginx.conf` file is copied to your apps`nginx.conf.d/` directory when
+you push to the server.

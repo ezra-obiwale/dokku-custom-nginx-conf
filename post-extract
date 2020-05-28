@@ -7,17 +7,25 @@ APP="$1"; verify_app_name "$APP"
 TMP_WORK_DIR="$2"
 TARGET_DIR="$DOKKU_ROOT/$APP/nginx.conf.d"
 
-mkdir $TARGET_DIR
+mkdir -p $TARGET_DIR
 
-SOURCE_FILE="$TMP_WORK_DIR/nginx.conf"
+SOURCE_FILE="$TMP_WORK_DIR/custom-nginx.conf"
 TARGET_FILE="$TARGET_DIR/app.custom.conf"
 
-echo "-----> Deleting previous custom nginx conf"
+dokku_log_info2_quiet "Processing custom nginx"
 
 # Remove previously created custom file
-test -f "$TARGET_FILE" && rm "$TARGET_FILE" 2>/dev/null
-
-echo "-----> Copying new custom nginx conf"
+if [ -f "$TARGET_FILE" ]; then
+    dokku_log_info1_quiet "Deleting previous custom nginx conf"
+    rm "$TARGET_FILE" 2>/dev/null
+else
+    dokku_log_info1_quiet "No existing custom nginx conf"
+fi
 
 # Creates new custom file
-test -f "$SOURCE_FILE" && cp "$SOURCE_FILE" "$TARGET_FILE" 2>/dev/null
+if [ -f "$SOURCE_FILE" ]; then
+    dokku_log_info1_quiet "Copying new custom nginx conf"
+    cp "$SOURCE_FILE" "$TARGET_FILE" 2>/dev/null
+else
+    dokku_log_info1_quiet "No custom nginx conf in root directory"
+fi
